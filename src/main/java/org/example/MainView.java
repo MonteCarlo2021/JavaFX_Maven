@@ -30,9 +30,12 @@ public class MainView extends VBox {
     private Simulation simulation;
     private Simulation initialSimulation;
 
+    private Simulator simulator;
+
     private int applicationState = EDITING;
 
     // Variable Draw und Erase; Draw == 1
+
 
     private int drawMode = Simulation.ALIVE;
 
@@ -228,10 +231,15 @@ public class MainView extends VBox {
 
         if(applicationState == SIMULATING) {
             this.simulation = Simulation.copy(this.initialSimulation);
+            this.simulator = new Simulator(this, this.simulation);
         }
 
         this.applicationState = applicationState;
 
         System.out.println("Application State: " + this.applicationState);
+    }
+
+    public Simulator getSimulator() {
+        return simulator;
     }
 }
